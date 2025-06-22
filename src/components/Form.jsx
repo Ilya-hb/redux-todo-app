@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-export default function Form({ handleAddTask }) {
+export default function Form({ handleAddTodo }) {
   const [inputVal, setInputVal] = useState("");
+
   const handleClick = () => {
     if (!inputVal.trim()) return;
-    handleAddTask(inputVal);
+    handleAddTodo(inputVal);
     setInputVal("");
   };
 
@@ -21,7 +22,7 @@ export default function Form({ handleAddTask }) {
         onClick={handleClick}
         className="px-5 py-2 bg-black border-neutral-700 border-1 rounded-xl hover:bg-neutral-600 transition cursor-pointer"
       >
-        Создать задачу
+        Create
       </button>
     </div>
   );
