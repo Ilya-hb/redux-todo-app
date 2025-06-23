@@ -5,7 +5,7 @@ export default function Form({ handleAddTodo }) {
 
   const handleClick = () => {
     if (!inputVal.trim()) return;
-    handleAddTodo(inputVal);
+    handleAddTodo({ id: Date.now(), text: inputVal, completed: false });
     setInputVal("");
   };
 

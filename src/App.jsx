@@ -2,6 +2,7 @@ import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, deleteTodo } from "./store/todoSlice";
+
 function App() {
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();

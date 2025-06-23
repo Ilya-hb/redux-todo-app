@@ -1,17 +1,15 @@
-import React from "react";
-
 export default function TodoList({ todos, handleDeleteTodo }) {
   return (
-    <ul className="flex flex-col justify-center items-center">
+    <ul className="flex flex-col justify-center bg-black items-center shadow-black shadow-2xl rounded-xl">
       {todos.map((el, index) => (
         <li
-          className="px-5 py-2 flex justify-between bg-black border-neutral-700 w-full hover:bg-neutral-900 cursor-pointer transition"
-          key={index}
+          className="px-5 py-2 flex justify-between w-full rounded-xl hover:bg-neutral-900 cursor-pointer transition"
+          key={el.id}
         >
-          <p className="text-xl">{el}</p>
+          <p className="text-xl">{el.text}</p>
           <button
             onClick={() => handleDeleteTodo(index)}
-            className="text-xl cursor-pointer"
+            className="text-xl cursor-pointer hover:bg-black p-1 transition hover:scale-110 rounded-full"
           >
             🗑️
           </button>
