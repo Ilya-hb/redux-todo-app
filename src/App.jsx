@@ -1,7 +1,7 @@
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, deleteTodo } from "./store/todoSlice";
+import { addTodo, deleteTodo, completeTodo } from "./store/todoSlice";
 
 function App() {
   const todos = useSelector((state) => state.todos);
@@ -15,6 +15,10 @@ function App() {
     dispatch(deleteTodo(index));
   };
 
+  const handleCompleteTodo = (id) => {
+    dispatch(completeTodo(id));
+  };
+
   return (
     <div className="flex flex-col justify-center items-center container py-5 mx-auto gap-5">
       <h1 className="text-4xl font-bold ">Set your Tasks</h1>
@@ -24,6 +28,7 @@ function App() {
           <TodoList
             todos={todos}
             handleDeleteTodo={handleDeleteTodo}
+            handleCompleteTodo={handleCompleteTodo}
           />
         ) : (
           <p className="text-center text-neutral-500">Nothing to display...</p>
