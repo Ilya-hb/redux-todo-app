@@ -15,6 +15,8 @@ const todoSlice = createSlice({
   initialState: getLocalStorageData(),
   reducers: {
     addTodo(state, action) {
+      console.log(action);
+      console.log(state);
       state.push(action.payload);
     },
     deleteTodo(state, action) {

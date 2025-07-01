@@ -10,7 +10,7 @@ export default function Form({ handleAddTodo }) {
   };
 
   return (
-    <div className="flex flex-row gap-5">
+    <div className="flex flex-row gap-5 items-center">
       <input
         type="text"
         value={inputVal}
