@@ -18,7 +18,7 @@ export default function TodoList({
           <span
             className={`${
               el.completed ? "text-green-400 " : ""
-            } flex items-center gap-2 text-xl max-w-[350px] text-nowrap`}
+            } flex items-center gap-2 text-xl max-w-[370px] text-nowrap`}
           >
             <Check
               size={24}
