@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { nanoid } from "nanoid";
 
 export default function Form({ handleAddTodo }) {
   const [inputVal, setInputVal] = useState("");
 
   const handleClick = () => {
     if (!inputVal.trim()) return;
-    handleAddTodo({ id: Date.now(), text: inputVal, completed: false });
+    handleAddTodo({
+      id: nanoid(),
+      text: inputVal,
+      completed: false,
+      createdAt: new Date(Date.now()).toLocaleDateString("uk-UA"),
+    });
     setInputVal("");
   };
 

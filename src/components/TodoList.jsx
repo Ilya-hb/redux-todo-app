@@ -1,5 +1,4 @@
-import { Trash, Check, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { Trash, Check } from "lucide-react";
 
 export default function TodoList({
   todos,
@@ -7,7 +6,7 @@ export default function TodoList({
   handleCompleteTodo,
 }) {
   return (
-    <ul className="flex flex-col justify-center bg-black items-center shadow-black shadow-2xl rounded-xl">
+    <ul className="flex flex-col justify-center w-full bg-black items-center shadow-black shadow-2xl rounded-xl">
       {todos.map((el, _) => (
         <li
           className={`
@@ -18,7 +17,7 @@ export default function TodoList({
           <span
             className={`${
               el.completed ? "text-green-400 " : ""
-            } flex items-center gap-2 text-xl max-w-[370px] text-nowrap`}
+            } flex items-center gap-2 text-xl max-w-[370px] text-nowrap `}
           >
             <Check
               size={24}

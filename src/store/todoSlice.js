@@ -5,29 +5,27 @@ const getLocalStorageData = () => {
     const todos = localStorage.getItem("todos");
     return todos ? JSON.parse(todos) : [];
   } catch (error) {
-    console.log(error.message);
+    console.log("Error: ", error.message);
     return [];
   }
 };
 
-const todoSlice = createSlice({
+const todosSlice = createSlice({
   name: "todos",
   initialState: getLocalStorageData(),
   reducers: {
     addTodo(state, action) {
-      console.log(action);
-      console.log(state);
       state.push(action.payload);
     },
     deleteTodo(state, action) {
-      return state.filter((todo, _) => todo.id !== action.payload);
+      return state.filter((el, _) => el.id !== action.payload);
     },
     completeTodo(state, action) {
-      const todo = state.find((el) => el.id === action.payload);
-      if (todo) todo.completed = !todo.completed;
+      const todoToComplete = state.find((el) => el.id === action.payload);
+      todoToComplete.completed = !todoToComplete.completed;
     },
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo } = todoSlice.actions;
-export default todoSlice.reducer;
+export const { addTodo, deleteTodo, completeTodo } = todosSlice.actions;
+export default todosSlice.reducer;
