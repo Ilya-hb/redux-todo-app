@@ -28,6 +28,15 @@ export default function TodoList({
             <input
               placeholder="Edit Todo"
               className="focus:outline-none"
+              value={updatedText}
+              autoFocus
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && updatedText.trim()) {
+                  handleEditTodo(el.id, updatedText.trim());
+                  setEditState({ id: null, isModalOpen: false });
+                  setUpdatedText("");
+                }
+              }}
               onChange={(e) => {
                 e.stopPropagation();
                 setUpdatedText(e.target.value);
@@ -53,8 +62,8 @@ export default function TodoList({
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (updatedText) {
-                      handleEditTodo(el.id, updatedText);
+                    if (updatedText.trim().length > 0) {
+                      handleEditTodo(el.id, updatedText.trim());
                       setEditState({
                         id: null,
                         isModalOpen: false,
@@ -88,6 +97,7 @@ export default function TodoList({
                   onClick={(e) => {
                     e.stopPropagation();
                     setEditState({ isModalOpen: true, id: el.id });
+                    setUpdatedText(el.text);
                   }}
                   className="iconButton"
                 >
