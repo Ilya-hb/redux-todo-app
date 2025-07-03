@@ -2,7 +2,7 @@ import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { BookmarkCheck } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, deleteTodo, completeTodo } from "./store/todoSlice";
+import { addTodo, deleteTodo, completeTodo, editTodo } from "./store/todoSlice";
 
 function App() {
   const todos = useSelector((state) => state.todos);
@@ -18,6 +18,10 @@ function App() {
 
   const handleCompleteTodo = (id) => {
     dispatch(completeTodo(id));
+  };
+
+  const handleEditTodo = (id, text) => {
+    dispatch(editTodo({ id, text }));
   };
 
   return (
@@ -37,6 +41,7 @@ function App() {
             todos={todos}
             handleDeleteTodo={handleDeleteTodo}
             handleCompleteTodo={handleCompleteTodo}
+            handleEditTodo={handleEditTodo}
           />
         ) : (
           <p className="text-center text-neutral-500">Nothing to display...</p>

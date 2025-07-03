@@ -24,8 +24,15 @@ const todosSlice = createSlice({
       const todoToComplete = state.find((el) => el.id === action.payload);
       todoToComplete.completed = !todoToComplete.completed;
     },
+
+    editTodo(state, action) {
+      console.log(action.payload);
+      const todoToEdit = state.find((el) => (el.id = action.payload.id));
+      todoToEdit.text = action.payload.text;
+    },
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo } = todosSlice.actions;
+export const { addTodo, deleteTodo, completeTodo, editTodo } =
+  todosSlice.actions;
 export default todosSlice.reducer;

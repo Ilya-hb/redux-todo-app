@@ -4,3 +4,7 @@ body {
   background-color: #272727;
   color: whitesmoke;
 }
+
+.iconButton {
+  @apply text-xl cursor-pointer hover:bg-black p-1 transition hover:scale-110 rounded-full;
+}
