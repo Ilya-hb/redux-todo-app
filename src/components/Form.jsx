@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import { CopyX, ClipboardPlus } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { addTodo, deleteCompletedTodo } from "../store/todoSlice";
 
@@ -22,9 +23,10 @@ export default function Form() {
       <input
         type="text"
         value={inputVal}
+        name="todoInput"
         placeholder="Write smh..."
         onChange={(e) => setInputVal(e.target.value)}
-        className="px-5 py-2 border-b-[1px] border-neutral-600 focus:outline-none"
+        className="px-5 py-2 focus:outline-none bg-neutral-900 rounded-xl drop-shadow-xl"
       ></input>
 
       <div className="flex  gap-5 items-center">
@@ -37,15 +39,17 @@ export default function Form() {
               createdAt: new Date(Date.now()).toLocaleDateString("uk-UA"),
             })
           }
-          className="px-5 py-2 bg-black border-neutral-700 border-1 rounded-xl hover:bg-neutral-600 transition cursor-pointer"
+          className="defaultButton"
         >
           Create
+          <ClipboardPlus size={20} />
         </button>
         <button
           onClick={() => handleDeleteCompletedTodo()}
-          className="px-5 py-2 bg-black border-neutral-700 border-1 rounded-xl hover:bg-neutral-600 transition cursor-pointer"
+          className="defaultButton"
         >
           Delete completed
+          <CopyX size={20} />
         </button>
       </div>
     </div>
