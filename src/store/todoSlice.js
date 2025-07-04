@@ -26,8 +26,8 @@ const todosSlice = createSlice({
     },
 
     editTodo(state, action) {
-      console.log(action.payload);
-      const todoToEdit = state.find((el) => (el.id = action.payload.id));
+      const todoToEdit = state.find((el) => el.id === action.payload.id);
+      console.log(todoToEdit);
       todoToEdit.text = action.payload.text;
     },
   },

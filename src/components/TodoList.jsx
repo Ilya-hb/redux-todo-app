@@ -68,8 +68,8 @@ export default function TodoList({
                         id: null,
                         isModalOpen: false,
                       });
-                      setUpdatedText("");
                     }
+                    setUpdatedText("");
                   }}
                   className="iconButton"
                 >
