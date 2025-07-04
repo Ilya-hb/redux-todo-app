@@ -30,9 +30,17 @@ const todosSlice = createSlice({
       console.log(todoToEdit);
       todoToEdit.text = action.payload.text;
     },
+    deleteCompletedTodo(state) {
+      return state.filter((el) => el.completed !== true);
+    },
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo, editTodo } =
-  todosSlice.actions;
+export const {
+  addTodo,
+  deleteTodo,
+  completeTodo,
+  editTodo,
+  deleteCompletedTodo,
+} = todosSlice.actions;
 export default todosSlice.reducer;

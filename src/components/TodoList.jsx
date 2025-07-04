@@ -1,17 +1,37 @@
 import { Trash, Check, Pencil, ArrowLeftToLine } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  addTodo,
+  deleteTodo,
+  completeTodo,
+  editTodo,
+  deleteCompletedTodo,
+} from "../store/todoSlice";
 
-export default function TodoList({
-  todos,
-  handleDeleteTodo,
-  handleCompleteTodo,
-  handleEditTodo,
-}) {
+export default function TodoList({ todos }) {
   const [editState, setEditState] = useState({
     id: null,
     isModalOpen: false,
   });
   const [updatedText, setUpdatedText] = useState("");
+  const dispatch = useDispatch();
+
+  const handleDeleteTodo = (index) => {
+    dispatch(deleteTodo(index));
+  };
+
+  const handleCompleteTodo = (id) => {
+    dispatch(completeTodo(id));
+  };
+
+  const handleEditTodo = (id, text) => {
+    dispatch(editTodo({ id, text }));
+  };
+
+  const handleDeleteCompletedTodo = () => {
+    dispatch(deleteCompletedTodo());
+  };
 
   return (
     <ul className="flex flex-col justify-center w-full bg-black items-center shadow-black shadow-2xl rounded-xl">

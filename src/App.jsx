@@ -1,28 +1,10 @@
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { BookmarkCheck } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodo, deleteTodo, completeTodo, editTodo } from "./store/todoSlice";
+import { useSelector } from "react-redux";
 
 function App() {
   const todos = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
-
-  const handleAddTodo = (newTodo) => {
-    dispatch(addTodo(newTodo));
-  };
-
-  const handleDeleteTodo = (index) => {
-    dispatch(deleteTodo(index));
-  };
-
-  const handleCompleteTodo = (id) => {
-    dispatch(completeTodo(id));
-  };
-
-  const handleEditTodo = (id, text) => {
-    dispatch(editTodo({ id, text }));
-  };
 
   return (
     <div className="flex flex-col justify-center items-center container py-5 mx-auto gap-5">
@@ -35,14 +17,9 @@ function App() {
       </div>
 
       <div className="flex flex-col gap-5 items-center">
-        <Form handleAddTodo={handleAddTodo} />
+        <Form />
         {todos.length ? (
-          <TodoList
-            todos={todos}
-            handleDeleteTodo={handleDeleteTodo}
-            handleCompleteTodo={handleCompleteTodo}
-            handleEditTodo={handleEditTodo}
-          />
+          <TodoList todos={todos} />
         ) : (
           <p className="text-center text-neutral-500">Nothing to display...</p>
         )}

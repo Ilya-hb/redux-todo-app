@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../store/todoSlice";
 
-export default function Form({ handleAddTodo }) {
+export default function Form() {
   const [inputVal, setInputVal] = useState("");
+  const dispatch = useDispatch();
+
+  const handleAddTodo = (newTodo) => {
+    dispatch(addTodo(newTodo));
+  };
 
   const handleClick = () => {
     if (!inputVal.trim()) return;
