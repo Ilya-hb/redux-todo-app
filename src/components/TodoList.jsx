@@ -1,9 +1,14 @@
 import { Trash, Check, Pencil, ArrowLeftToLine, CopyX } from "lucide-react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, completeTodo, editTodo } from "../store/todoSlice";
+import { getFilteredTodos } from "../utils/todoUtils";
 
-export default function TodoList({ todos }) {
+export default function TodoList() {
+  const todos = useSelector((state) => state.todos);
+  const filter = useSelector((state) => state.filter);
+  const filteredTodos = getFilteredTodos(todos, filter);
+
   const [editState, setEditState] = useState({
     id: null,
     isModalOpen: false,
@@ -25,7 +30,7 @@ export default function TodoList({ todos }) {
 
   return (
     <ul className="flex flex-col justify-center w-full bg-black items-center shadow-black shadow-2xl rounded-xl">
-      {todos.map((el, _) => (
+      {filteredTodos.map((el, _) => (
         <li
           className={`
            px-5 py-2 flex items-center flex-col w-full rounded-xl hover:bg-neutral-900 cursor-pointer transition`}
