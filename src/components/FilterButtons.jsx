@@ -10,23 +10,29 @@ export default function FilterButtons() {
   const handleActiveFilterChange = (newActiveFilter) => {
     dispatch(setFilter(newActiveFilter));
   };
-
+  console.log(activeFilter);
   return (
     <div className="flex gap-2 justify-center items-center w-fit">
       <button
-        className="defaultButton"
+        className={`defaultButton ${
+          activeFilter === FILTERS.ALL && "!bg-neutral-600"
+        }`}
         onClick={() => handleActiveFilterChange(FILTERS.ALL)}
       >
         All
       </button>
       <button
-        className="defaultButton"
+        className={`defaultButton ${
+          activeFilter === FILTERS.ACTIVE && "!bg-neutral-600"
+        }`}
         onClick={() => handleActiveFilterChange(FILTERS.ACTIVE)}
       >
         Active
       </button>
       <button
-        className="defaultButton"
+        className={`defaultButton ${
+          activeFilter === FILTERS.COMPLETED && "!bg-neutral-600"
+        }`}
         onClick={() => handleActiveFilterChange(FILTERS.COMPLETED)}
       >
         Completed

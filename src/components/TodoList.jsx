@@ -1,4 +1,4 @@
-import { Trash, Check, Pencil, ArrowLeftToLine, CopyX } from "lucide-react";
+import { Trash, Check, Pencil, ArrowLeftToLine } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, completeTodo, editTodo } from "../store/todoSlice";
@@ -45,6 +45,7 @@ export default function TodoList() {
                 placeholder="Edit Todo"
                 className="focus:outline-none"
                 value={updatedText}
+                e
                 autoFocus
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && updatedText.trim()) {
