@@ -8,6 +8,7 @@ export default function TodoList() {
   const todos = useSelector((state) => state.todos);
   const filter = useSelector((state) => state.filter);
   const filteredTodos = getFilteredTodos(todos, filter);
+  console.log(filteredTodos);
 
   const [editState, setEditState] = useState({
     id: null,
@@ -45,7 +46,6 @@ export default function TodoList() {
                 placeholder="Edit Todo"
                 className="focus:outline-none"
                 value={updatedText}
-                e
                 autoFocus
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && updatedText.trim()) {
