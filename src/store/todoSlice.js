@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 const getLocalStorageData = () => {
   try {
     const todos = localStorage.getItem("todos");
+    // console.log(todos);
     return todos ? JSON.parse(todos) : [];
   } catch (error) {
     console.log("Error: ", error.message);
@@ -31,7 +32,7 @@ const todosSlice = createSlice({
       state.todos.push(action.payload);
     },
     deleteTodo(state, action) {
-      return state.todos.filter((el, _) => el.id !== action.payload);
+      state.todos = state.todos.filter((el) => el.id !== action.payload);
     },
     completeTodo(state, action) {
       const todoToComplete = state.todos.find((el) => el.id === action.payload);
@@ -40,21 +41,22 @@ const todosSlice = createSlice({
 
     editTodo(state, action) {
       const todoToEdit = state.todos.find((el) => el.id === action.payload.id);
-      console.log(todoToEdit);
       todoToEdit.text = action.payload.text;
     },
     deleteCompletedTodo(state) {
       return state.todos.filter((el) => el.completed !== true);
     },
   },
+
+  // async
   extraReducers: (builder) => {
     builder.addCase(fetchFakeTodos.pending, (state, action) => {
       state.loading = true;
       state.error = null;
     });
     builder.addCase(fetchFakeTodos.fulfilled, (state, action) => {
-      console.log(action);
-      const validData = action.payload.map((el) => {
+      // console.log(action);
+      const validData = action.payload.slice(0, 5).map((el) => {
         return {
           id: nanoid(),
           text: el.title,
@@ -62,12 +64,10 @@ const todosSlice = createSlice({
           createdAt: new Date(Date.now()).toLocaleDateString("uk-UA"),
         };
       });
-      state.todos = [...validData];
-      console.log(state.todos);
+      state.todos = [...state.todos, ...validData];
       state.loading = false;
     });
     builder.addCase(fetchFakeTodos.rejected, (state, action) => {
-      console.log(action);
       state.error = action.error.message;
       state.loading = false;
     });

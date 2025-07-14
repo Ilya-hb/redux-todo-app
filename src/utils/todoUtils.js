@@ -1,6 +1,6 @@
 import { FILTERS } from "./enums";
 
-export const getFilteredTodos = (todos, filter) => {
+export const getFilteredTodos = ({ todos }, filter) => {
   switch (filter) {
     case FILTERS.ACTIVE:
       return todos.filter((todo) => todo.completed !== true);

@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { CopyX, ClipboardPlus } from "lucide-react";
+import { CopyX, ClipboardPlus, Lightbulb } from "lucide-react";
 import { useDispatch } from "react-redux";
-import { addTodo, deleteCompletedTodo } from "../store/todoSlice";
+import {
+  addTodo,
+  deleteCompletedTodo,
+  fetchFakeTodos,
+} from "../store/todoSlice";
 
 export default function Form() {
   const [inputVal, setInputVal] = useState("");
@@ -50,6 +54,13 @@ export default function Form() {
         >
           Delete completed
           <CopyX size={20} />
+        </button>
+        <button
+          onClick={() => dispatch(fetchFakeTodos())}
+          className="defaultButton"
+        >
+          Fetch Fake Todos
+          <Lightbulb size={20} />
         </button>
       </div>
     </div>

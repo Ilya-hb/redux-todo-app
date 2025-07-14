@@ -1,18 +1,9 @@
-import { useEffect } from "react";
 import FilterButtons from "./components/FilterButtons";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import { BookmarkCheck } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchFakeTodos } from "./store/todoSlice";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchFakeTodos());
-  }, []);
-
   return (
     <div className="flex flex-col justify-center items-center container py-5 mx-auto gap-5">
       <div className="flex items-center gap-5">
@@ -26,7 +17,7 @@ function App() {
         <Form />
         <h2 className="text-2xl font-semibold">Manage your tasks</h2>
         <FilterButtons />
-        {/* <TodoList /> */}
+        <TodoList />
       </div>
     </div>
   );

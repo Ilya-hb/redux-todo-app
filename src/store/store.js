@@ -4,7 +4,8 @@ import filterReducer from "./filterSlice";
 
 const saveToLocalStorage = (state) => {
   try {
-    const serialized = JSON.stringify(state.todos);
+    const serialized = JSON.stringify(state.todos.todos);
+    console.log("serialized:", state.todos);
     localStorage.setItem("todos", serialized);
   } catch (error) {
     console.log("Error while saving todos:", error.message);
