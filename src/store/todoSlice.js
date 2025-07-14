@@ -44,7 +44,13 @@ const todosSlice = createSlice({
       todoToEdit.text = action.payload.text;
     },
     deleteCompletedTodo(state) {
-      return state.todos.filter((el) => el.completed !== true);
+      return {
+        ...state.todos,
+        todos: state.todos.filter((el) => !el.completed),
+      };
+    },
+    deleteAllTodos(state) {
+      state.todos = [];
     },
   },
 
@@ -80,5 +86,6 @@ export const {
   completeTodo,
   editTodo,
   deleteCompletedTodo,
+  deleteAllTodos,
 } = todosSlice.actions;
 export default todosSlice.reducer;

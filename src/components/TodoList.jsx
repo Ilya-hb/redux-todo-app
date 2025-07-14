@@ -8,6 +8,7 @@ export default function TodoList() {
   const todos = useSelector((state) => state.todos);
   const filter = useSelector((state) => state.filter);
   const filteredTodos = getFilteredTodos(todos, filter);
+
   console.log("Filtered Todos:\n", filteredTodos);
 
   const [editState, setEditState] = useState({

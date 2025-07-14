@@ -10,5 +10,5 @@ body {
 }
 
 .defaultButton {
-  @apply px-5 py-2 bg-black border-neutral-700 border-1 rounded-xl hover:bg-neutral-600 transition cursor-pointer flex items-center gap-2;
+  @apply px-5 py-2 bg-black border-neutral-700 border-1 rounded-xl hover:bg-neutral-600 transition cursor-pointer flex items-center gap-2 active:bg-white active:text-black;
 }
