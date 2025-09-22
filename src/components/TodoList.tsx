@@ -1,32 +1,38 @@
 import { Trash, Check, Pencil, ArrowLeftToLine } from "lucide-react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, completeTodo, editTodo } from "../store/todoSlice";
 import { getFilteredTodos } from "../utils/todoUtils";
+import { useAppDispatch, useAppSelector } from "../utils/redux-hooks";
+import type { TodoState } from "../types/types";
+
+interface EditState {
+  id: null | string;
+  isModalOpen: boolean;
+}
 
 export default function TodoList() {
-  const todos = useSelector((state) => state.todos);
-  const filter = useSelector((state) => state.filter);
-  const filteredTodos = getFilteredTodos(todos, filter);
+  const { todos } = useAppSelector((state) => state.todos);
+  const filter = useAppSelector((state) => state.filter);
+  const filteredTodos: TodoState[] = getFilteredTodos(todos, filter);
+  const dispatch = useAppDispatch();
 
   console.log("Filtered Todos:\n", filteredTodos);
-
-  const [editState, setEditState] = useState({
+  console.log("Todo state:\n", todos);
+  const [editState, setEditState] = useState<EditState>({
     id: null,
     isModalOpen: false,
   });
   const [updatedText, setUpdatedText] = useState("");
-  const dispatch = useDispatch();
 
-  const handleDeleteTodo = (index) => {
-    dispatch(deleteTodo(index));
+  const handleDeleteTodo = (id: string) => {
+    dispatch(deleteTodo(id));
   };
 
-  const handleCompleteTodo = (id) => {
+  const handleCompleteTodo = (id: string) => {
     dispatch(completeTodo(id));
   };
 
-  const handleEditTodo = (id, text) => {
+  const handleEditTodo = (id: string, text: string) => {
     dispatch(editTodo({ id, text }));
   };
 

@@ -8,12 +8,13 @@ import {
   deleteCompletedTodo,
   fetchFakeTodos,
 } from "../store/todoSlice";
+import type { TodoState } from "../types/types";
 
 export default function Form() {
   const [inputVal, setInputVal] = useState("");
   const dispatch = useDispatch();
 
-  const handleAddTodo = (newTodo) => {
+  const handleAddTodo = (newTodo: TodoState) => {
     if (!inputVal.trim()) return;
     setInputVal("");
     dispatch(addTodo(newTodo));
