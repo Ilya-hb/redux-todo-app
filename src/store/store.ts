@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { todosReducer } from "./todoSlice";
 import filterReducer from "./filterSlice";
+import type { TodoState } from "../types/types";
 
-const saveToLocalStorage = (state: RootState) => {
+const saveToLocalStorage = (todos: TodoState[]) => {
   try {
-    const serialized = JSON.stringify(state.todos);
-    console.log("serialized:", state.todos);
+    const serialized = JSON.stringify(todos);
+    console.log("serialized:", todos);
     localStorage.setItem("todos", serialized);
   } catch (error) {
     if (error instanceof Error) {
@@ -21,7 +22,7 @@ export const store = configureStore({
   },
 });
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+store.subscribe(() => saveToLocalStorage(store.getState().todos.todos));
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

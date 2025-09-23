@@ -6,10 +6,9 @@ import {
 import { nanoid } from "nanoid";
 import type { ApiTodo, LocalStorageTodos, TodoState } from "../types/types";
 
-const getLocalStorageData = () => {
+const getLocalStorageData = (): TodoState[] => {
   try {
     const todos = localStorage.getItem("todos");
-    // console.log(todos);
     return todos ? JSON.parse(todos) : [];
   } catch (error) {
     if (error instanceof Error)
@@ -34,7 +33,7 @@ export const fetchFakeTodos = createAsyncThunk<
   }
 });
 
-const initialState: LocalStorageTodos | [] = {
+const initialState: LocalStorageTodos = {
   todos: getLocalStorageData(),
   loading: false,
   error: null,
@@ -59,8 +58,7 @@ const todosSlice = createSlice({
       if (todoToEdit) todoToEdit.text = action.payload.text;
     },
     deleteCompletedTodo(state) {
-      const completedTodos = state.todos.filter((el) => el.completed === true);
-      state.todos = [...state.todos, ...completedTodos];
+      state.todos = state.todos.filter((el) => el.completed === false);
       // return {
       //   ...state.todos,
       //   todos: state.todos.filter((el) => !el.completed),
@@ -93,8 +91,9 @@ const todosSlice = createSlice({
       }
     );
     builder.addCase(fetchFakeTodos.rejected, (state, action) => {
-      state.error = action.error.message;
       state.loading = false;
+      if (action.payload) state.error = action.payload;
+      state.error = action.error.message ?? "Unknown error while fetching";
     });
   },
 });

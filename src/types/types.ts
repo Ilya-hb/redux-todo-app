@@ -6,7 +6,7 @@ export interface TodoState {
 }
 
 export interface LocalStorageTodos {
-  error: null | "string";
+  error: null | string;
   loading: boolean;
   todos: TodoState[];
 }
